@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إلى أغلى أم - Mama Dodo ❤️</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cairo:wght@400;600;700;800&family=Great+Vibes&family=Reem+Kufi:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- Canvas Confetti Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- رابط ملف الـ CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Canvas للقلوب والورد المتحرك -->
+  <canvas id="fx-canvas"></canvas>
+
+  <div class="container">
+    
+    <!-- Header -->
+    <header class="header">
+      <div class="mother-tag">
+        <i class="fa-solid fa-crown"></i> أمي الثانية وتاج رأسي
+      </div>
+      <h1 class="main-title">Mama Dodo</h1>
+      <div class="sub-title">Mama Hoda ✨</div>
+    </header>
+
+    <!-- Main Message Card -->
+    <div class="glass-card message-box">
+      <div class="quote-icon"><i class="fa-solid fa-quote-right"></i></div>
+      <p class="warm-text">
+        يا أغلى وأحلى <span class="highlight">ماما هدى</span> في الدنيا ❤️<br>
+        ضحكتك وراحتك بالدنيا وما فيها، وزعل الدنيا كله يروح ويتمسح في لحظة قدام ابتسامتك.<br>
+        مكانك في قلوبنا كبير جداً، وكل لحظة وإنتِ المُنورة حياتنا بالخير والحب والدفء.
+      </p>
+
+      <div class="btn-group">
+        <button class="btn" onclick="triggerSurprise()">
+          <i class="fa-solid fa-gift"></i> اضغطي هنا يا أحلى دودو ✨
+        </button>
+      </div>
+    </div>
+
+    <!-- Flip Cards Section -->
+    <h3 class="section-title">
+      <i class="fa-solid fa-heart" style="color: var(--primary);"></i>
+      ليه بنحبك يا أحلى Mama Dodo؟
+      <i class="fa-solid fa-heart" style="color: var(--primary);"></i>
+    </h3>
+    
+    <div class="cards-grid">
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <i class="fa-solid fa-face-smile-beam"></i>
+            <span>ضحكتك العسل</span>
+          </div>
+          <div class="flip-card-back">
+            ضحكتك بتفتح النفس وبتنور البيت وتخلي أي زعل يختفي فوراً! 🥰
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <i class="fa-solid fa-hand-holding-heart"></i>
+            <span>قلبك الأبيض</span>
+          </div>
+          <div class="flip-card-back">
+            حنيتك وطيبة قلبك مفيش زيها في الدنيا كلها يا أمي ❤️
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <i class="fa-solid fa-sun"></i>
+            <span>وجودك بالدنيا</span>
+          </div>
+          <div class="flip-card-back">
+            وجودك هو السند والأمان والبركة اللي منورة حياتنا دايماً ✨
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Daily Prayer Box -->
+    <div class="glass-card">
+      <h3 class="section-title">
+        <i class="fa-solid fa-wand-magic-sparkles" style="color: var(--accent-gold);"></i>
+        دعوة جميلة من القلب لـ Mama Dodo
+      </h3>
+      <div class="wish-box" id="wishText">
+        اضغطي على الزرار بالأسفل لتلقي دعوة مخصصة لكي اليوم 🌸
+      </div>
+      <div style="margin-top: 15px;">
+        <button class="btn btn-secondary" onclick="generateWish()">
+          <i class="fa-solid fa-rotate"></i> دعوة جديدة
+        </button>
+      </div>
+    </div>
+
+    <!-- Rose Garden Section -->
+    <div class="rose-garden">
+      <h3 style="color: var(--primary-dark); font-weight:800;">🌹 حديقة ورد Mama Dodo 🌹</h3>
+      <p style="color: #666; margin-top:5px;">كل ضغطة بنزرعلك وردة جديدة تعبيراً عن حبنا!</p>
+      <div class="rose-display" id="roseDisplay">🌹🌹🌹</div>
+      <div class="rose-count" id="roseCount">عدد الورود المهداة: 3 وردات</div>
+      <button class="btn" style="margin-top:15px;" onclick="addRose()">
+        <i class="fa-solid fa-seedling"></i> اهدِ وردة لـ دودو 🌹
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Popup Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-card">
+      <i class="fa-solid fa-heart-pulse big-heart"></i>
+      <h2>يا أحلى وأغلى Mama Dodo!</h2>
+      <p>
+        إن شاء الله الزعل يمشي والابتسامة الحلوة ترجع تنور وشك من تاني.<br>
+        ربنا يديمك في حياتنا نعمة وست الكل وتاج فوق رؤوسنا دايماً يا رب! ❤️✨
+      </p>
+      <button class="btn" onclick="closeModal()">
+        بحبك يا Mama Dodo ❤️
+      </button>
+    </div>
+  </div>
+
+  <!-- رابط ملف الـ JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
